@@ -14,8 +14,12 @@ class Tree {
   buildTree(array) {
     const sorted = array.sort();
     const cleanArr = sorted.filter(
-      (item, index) => sorted.indexOd(item) === index
+      (item, index) => sorted.indexOf(item) === index
     );
+
+    const middle = Math.floor(cleanArr.length / 2);
+    const left = cleanArr.slice(0, middle);
+    const right = cleanArr.slice(middle, 0);
   }
 
   insert(value) {}
