@@ -1,5 +1,5 @@
 class Node {
-  constructor(data, left, right) {
+  constructor(data, left = null, right = null) {
     this.data = data;
     this.left = left;
     this.right = right;
@@ -7,7 +7,33 @@ class Node {
 }
 
 class Tree {
-  constructor(root) {
-    this.root = root;
+  constructor(array) {
+    this.root = this.buildTree(array);
   }
+
+  buildTree(array) {}
+
+  insert(value) {}
+
+  deleteItem(value) {}
+
+  find(value) {}
+
+  levelOrderForEach(callback) {}
+
+  inOrderForEach(callback) {}
+
+  preOrderForEach(callback) {}
+
+  postOrderForEach(callback) {}
+
+  height(value) {}
+
+  depth(value) {}
+
+  isBalanced() {}
+
+  rebalance() {}
+
+  prettyPrint() {}
 }
