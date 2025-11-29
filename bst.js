@@ -11,7 +11,12 @@ class Tree {
     this.root = this.buildTree(array);
   }
 
-  buildTree(array) {}
+  buildTree(array) {
+    const sorted = array.sort();
+    const removeDups = sorted.filter(
+      (item, index) => sorted.indexOd(item) === index
+    );
+  }
 
   insert(value) {}
 
@@ -35,7 +40,7 @@ class Tree {
 
   rebalance() {}
 
-  prettyPrint(node, prefix = '', isLeft = true) {
+  prettyPrint(node, prefix = "", isLeft = true) {
     if (node === null) {
       return;
     }
