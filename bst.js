@@ -13,7 +13,7 @@ class Tree {
 
   buildTree(array) {
     const sorted = array.sort();
-    const removeDups = sorted.filter(
+    const cleanArr = sorted.filter(
       (item, index) => sorted.indexOd(item) === index
     );
   }
