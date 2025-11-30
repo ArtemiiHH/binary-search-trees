@@ -65,18 +65,33 @@ class Tree {
 
   deleteItem(value) {
     let currentNode = this.root;
+    let parent;
 
     while (currentNode !== null) {
       if (value < currentNode.data) {
+        parent = currentNode;
         currentNode = currentNode.left;
       } else if (value > currentNode.data) {
+        parent = currentNode;
         currentNode = currentNode.right;
       } else {
         return currentNode;
       }
     }
 
-    return null;
+    // No children (leaf)
+    if (currentNode.left === null && currentNode.right === null) {
+      if (parent === null) {
+        this.root = null;
+        return;
+      } else {
+        if (parent.left === currentNode) {
+          parent.left === null;
+        } else if (parent.right === currentNode) {
+          parent.right = null;
+        }
+      }
+    }
   }
 
   find(value) {
