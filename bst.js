@@ -65,7 +65,21 @@ class Tree {
 
   deleteItem(value) {}
 
-  find(value) {}
+  find(value) {
+    let currentNode = this.root;
+
+    while (currentNode !== null) {
+      if (value < currentNode.data) {
+        currentNode = currentNode.left;
+      } else if (value > currentNode.data) {
+        currentNode = currentNode.right;
+      } else {
+        return currentNode;
+      }
+    }
+
+    return null;
+  }
 
   levelOrderForEach(callback) {}
 
