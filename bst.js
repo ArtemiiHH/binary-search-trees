@@ -12,14 +12,29 @@ class Tree {
   }
 
   buildTree(array) {
-    const sorted = array.sort();
-    const cleanArr = sorted.filter(
-      (item, index) => sorted.indexOf(item) === index
-    );
+    // If array is empty
+    if (!array || array.length === 0) {
+      return null;
+    }
 
+    // Clean and sort array
+    const cleanArr = [...new Set(array)].sort((a, b) => a - b);
+
+    // Find middle index
     const middle = Math.floor(cleanArr.length / 2);
+
+    // Creat new node
+    const node = new Node(cleanArr[middle]);
+
+    // Split array
     const left = cleanArr.slice(0, middle);
-    const right = cleanArr.slice(middle, 0);
+    const right = cleanArr.slice(middle + 1);
+
+    // Recursively build children
+    node.left = this.buildTree(left);
+    node.right = this.buildTree(right);
+
+    return node;
   }
 
   insert(value) {}
