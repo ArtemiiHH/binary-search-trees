@@ -64,35 +64,72 @@ class Tree {
   }
 
   deleteItem(value) {
-    let currentNode = this.root;
-    let parent;
+  let currentNode = this.root;
+  let parent = null;
 
-    while (currentNode !== null) {
-      if (value < currentNode.data) {
-        parent = currentNode;
-        currentNode = currentNode.left;
-      } else if (value > currentNode.data) {
-        parent = currentNode;
-        currentNode = currentNode.right;
-      } else {
-        return currentNode;
-      }
-    }
+  // Search
+  while (currentNode !== null && currentNode.data !== value) {
+    parent = currentNode;
 
-    // No children (leaf)
-    if (currentNode.left === null && currentNode.right === null) {
-      if (parent === null) {
-        this.root = null;
-        return;
-      } else {
-        if (parent.left === currentNode) {
-          parent.left === null;
-        } else if (parent.right === currentNode) {
-          parent.right = null;
-        }
-      }
+    if (value < currentNode.data) {
+      currentNode = currentNode.left;
+    } else {
+      currentNode = currentNode.right;
     }
   }
+
+  // Value not found
+  if (currentNode === null) return;
+
+  // CASE 1 — LEAF NODE
+  if (currentNode.left === null && currentNode.right === null) {
+    if (parent === null) {
+      this.root = null; // deleting root
+    } else if (parent.left === currentNode) {
+      parent.left = null;
+    } else {
+      parent.right = null;
+    }
+    return;
+  }
+
+  // CASE 2 — ONE CHILD
+  if (
+    (currentNode.left !== null && currentNode.right === null) ||
+    (currentNode.left === null && currentNode.right !== null)
+  ) {
+    const child =
+      currentNode.left !== null ? currentNode.left : currentNode.right;
+
+    if (parent === null) {
+      this.root = child; // deleting root
+    } else if (parent.left === currentNode) {
+      parent.left = child;
+    } else {
+      parent.right = child;
+    }
+    return;
+  }
+
+  // CASE 3 — TWO CHILDREN
+  let successorParent = currentNode;
+  let successor = currentNode.right;
+
+  while (successor.left !== null) {
+    successorParent = successor;
+    successor = successor.left;
+  }
+
+  // Replace value
+  currentNode.data = successor.data;
+
+  // Remove successor node
+  if (successorParent.left === successor) {
+    successorParent.left = successor.right;
+  } else {
+    successorParent.right = successor.right;
+  }
+}
 
   find(value) {
     let currentNode = this.root;
