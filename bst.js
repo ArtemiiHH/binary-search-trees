@@ -37,7 +37,31 @@ class Tree {
     return node;
   }
 
-  insert(value) {}
+  insert(value) {
+    if (this.root === null) return (this.root = new Node(value));
+
+    let currentNode = this.root;
+
+    while (currentNode !== null) {
+      if (value < currentNode.data) {
+        if (currentNode.left === null) {
+          currentNode.left = new Node(value);
+          return;
+        } else {
+          currentNode = currentNode.left;
+        }
+      } else if (value > currentNode.data) {
+        if (currentNode.right === null) {
+          currentNode.right = new Node(value);
+          return;
+        } else {
+          currentNode = currentNode.right;
+        }
+      } else {
+        return;
+      }
+    }
+  }
 
   deleteItem(value) {}
 
