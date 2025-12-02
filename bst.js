@@ -187,12 +187,28 @@ class Tree {
     if (!callback) {
       throw Error("No callback passed");
     }
+
+    function traverse(node) {
+      if (node === null) return;
+      callback(node);
+      traverse(node.left);
+      traverse(node.right);
+    }
+    traverse(this.root);
   }
 
   postOrderForEach(callback) {
     if (!callback) {
       throw Error("No callback passed");
     }
+
+    function traverse(node) {
+      if (node === null) return;
+      traverse(node.left);
+      traverse(node.right);
+      callback(node);
+    }
+    traverse(this.root);
   }
 
   height(value) {}
