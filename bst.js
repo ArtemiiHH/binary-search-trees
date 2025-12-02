@@ -211,7 +211,19 @@ class Tree {
     traverse(this.root);
   }
 
-  height(value) {}
+  height(value) {
+    let target = this.find(value);
+    if (target === null) return null;
+
+    function getHeight(node) {
+      if (node === null) return -1;
+      let leftHeight = getHeight(node.left);
+      let rightHeight = getHeight(node.right);
+      return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    return getHeight(target);
+  }
 
   depth(value) {}
 
