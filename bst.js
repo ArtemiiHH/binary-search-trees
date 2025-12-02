@@ -148,29 +148,28 @@ class Tree {
   }
 
   levelOrderForEach(callback) {
-  if (!callback) {
-    throw new Error("No callback passed");
-  }
-
-  if (!this.root) return;
-
-  const queue = [this.root];
-
-  while (queue.length > 0) {
-    const currentNode = queue.shift();
-
-    callback(currentNode);
-
-    if (currentNode.left !== null) {
-      queue.push(currentNode.left);
+    if (!callback) {
+      throw new Error("No callback passed");
     }
 
-    if (currentNode.right !== null) {
-      queue.push(currentNode.right);
+    if (!this.root) return;
+
+    const queue = [this.root];
+
+    while (queue.length > 0) {
+      const currentNode = queue.shift();
+
+      callback(currentNode);
+
+      if (currentNode.left !== null) {
+        queue.push(currentNode.left);
+      }
+
+      if (currentNode.right !== null) {
+        queue.push(currentNode.right);
+      }
     }
   }
-}
-
 
   inOrderForEach(callback) {}
 
