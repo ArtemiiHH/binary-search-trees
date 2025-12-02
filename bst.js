@@ -172,20 +172,26 @@ class Tree {
   }
 
   inOrderForEach(callback) {
-    if (!callback) {
-      throw Error('No callback passed');
+    if (!callback) throw Error("No callback passed");
+
+    function traverse(node) {
+      if (node === null) return;
+      traverse(node.left);
+      callback(node);
+      traverse(node.right);
     }
+    traverse(this.root);
   }
 
   preOrderForEach(callback) {
     if (!callback) {
-      throw Error('No callback passed');
+      throw Error("No callback passed");
     }
   }
 
   postOrderForEach(callback) {
     if (!callback) {
-      throw Error('No callback passed');
+      throw Error("No callback passed");
     }
   }
 
