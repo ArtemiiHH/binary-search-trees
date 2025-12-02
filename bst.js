@@ -225,7 +225,24 @@ class Tree {
     return getHeight(target);
   }
 
-  depth(value) {}
+  depth(value) {
+    let currentNode = this.root;
+    let count = 0;
+
+    while (currentNode !== null) {
+      if (value === currentNode.data) {
+        return count;
+      } else if (value < currentNode.data) {
+        currentNode = currentNode.left;
+        count++;
+      } else {
+        currentNode = currentNode.right;
+        count++;
+      }
+    }
+
+    return null;
+  }
 
   isBalanced() {}
 
