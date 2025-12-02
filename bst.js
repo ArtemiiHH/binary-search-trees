@@ -262,7 +262,13 @@ class Tree {
     return check(this.root) !== -1;
   }
 
-  rebalance() {}
+  rebalance() {
+    const values = [];
+
+    this.inOrderForEach(node => values.push(node.data));
+
+    this.root = this.buildTree(values);
+  }
 
   prettyPrint(node, prefix = "", isLeft = true) {
     if (node === null) {
@@ -272,6 +278,7 @@ class Tree {
       prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
     }
     console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+    
     if (node.left !== null) {
       prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
