@@ -171,11 +171,23 @@ class Tree {
     }
   }
 
-  inOrderForEach(callback) {}
+  inOrderForEach(callback) {
+    if (!callback) {
+      throw Error('No callback passed');
+    }
+  }
 
-  preOrderForEach(callback) {}
+  preOrderForEach(callback) {
+    if (!callback) {
+      throw Error('No callback passed');
+    }
+  }
 
-  postOrderForEach(callback) {}
+  postOrderForEach(callback) {
+    if (!callback) {
+      throw Error('No callback passed');
+    }
+  }
 
   height(value) {}
 
